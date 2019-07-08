@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_203116) do
+ActiveRecord::Schema.define(version: 2019_07_08_225630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clubs", force: :cascade do |t|
+    t.string "name"
+    t.string "nation"
+    t.string "league"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "nation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "club_id"
+    t.string "image"
+    t.index ["club_id"], name: "index_players_on_club_id"
+  end
+
+  create_table "transferts", force: :cascade do |t|
+    t.string "player_name"
+    t.integer "player_age"
+    t.string "player_nation"
+    t.string "from"
+    t.string "to"
+    t.string "value"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "player_id"
+    t.index ["player_id"], name: "index_transferts_on_player_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +61,6 @@ ActiveRecord::Schema.define(version: 2019_07_08_203116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "players", "clubs"
+  add_foreign_key "transferts", "players"
 end

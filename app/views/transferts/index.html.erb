@@ -1,0 +1,21 @@
+
+<div class="container">
+  <h1>Les Derniers Transferts</h1>
+  <p>Find me in app/views/transferts/index.html.erb</p>
+  <div class="row">
+    <% @transferts.each do |transfert| %>
+      <div class="col-sm-4">
+        <div class="card-product">
+          <img class="player-img" src="<%= transfert.player.image %>">
+          <div class="card-product-infos">
+            <h2><%= transfert.player.name %> (<%= transfert.player.age %> ans)</h2>
+            <p><%= transfert.player.nation %></p>
+            <p>from <span class="from"><%= transfert.from %></span> to <span class="to"><%= transfert.to %></span> <br> for <%= transfert.value %></p>
+            <img src="<%= transfert.from_club.image %>" alt="" height="15" width="15">
+            <img src="<%= transfert.to_club.image %>" alt="" height="15" width="15">
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
