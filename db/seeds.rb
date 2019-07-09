@@ -54,6 +54,7 @@ def create_transfert(element)
   end
 
   if !Transfert.where(player: player, from: from.name, to: to.name).exists?
+    puts "Creating Transfert of #{player.name} from #{from.name} to #{to.name}"
     Transfert.create(
      from: from.name,
      to: to.name,
