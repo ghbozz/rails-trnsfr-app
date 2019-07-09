@@ -2,11 +2,11 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 
-TransfertClub.destroy_all
-Transfert.destroy_all
-Player.destroy_all
-Club.destroy_all
-League.destroy_all
+# TransfertClub.destroy_all
+# Transfert.destroy_all
+# Player.destroy_all
+# Club.destroy_all
+# League.destroy_all
 
 def scraper(n)
   count = 1
@@ -52,7 +52,7 @@ def create_transfert(element)
     player = Player.create!(name: name, age: age, nation: nation, image: img, club: to)
   end
 
-  if !Transfert.where(player_name: name, from: clubs[0], to: clubs[1]).exists?
+  if !Transfert.where(player: player, from: from.name, to: to.name).exists?
     Transfert.create(
      from: from.name,
      to: to.name,

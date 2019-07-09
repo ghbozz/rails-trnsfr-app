@@ -3,4 +3,6 @@ class Club < ApplicationRecord
   has_many :players
   has_many :transfert_club
   has_many :transferts, through: :transfert_club
+
+  validates :name, uniqueness: true
 end
