@@ -11,7 +11,7 @@ class Transfert < ApplicationRecord
   pg_search_scope :global_search,
     against: [ :from, :to ],
     associated_against: {
-      player: [ :name ]
+      player: [ :name, :nation ]
     },
     using: {
       tsearch: { prefix: true }

@@ -5,17 +5,20 @@
   <%= simple_form_for :query, url: transferts_path, method: :get do |f| %>
     <%= f.input :league, collection: League.all.uniq.pluck(:name).sort, label: false %>
     <%= f.input :search %>
-    <%= f.submit %>
+    <%= f.submit 'Search' %>
   <% end %>
 
-  <div class="row">
+  <div class="row mt-5">
     <% @transferts.each do |transfert| %>
       <div class="col-sm-4">
         <div class="card-product">
           <img class="player-img" src="<%= transfert.player.image %>">
+          <% if transfert.created_at.to_date == Date.today %>
+            <span class="new-tag">NEW</span>
+          <% end %>
           <div class="card-product-infos">
             <h2><%= transfert.player.name %> (<%= transfert.player.age %> ans)</h2>
-            <p><%= transfert.player.nation %></p>
+            <p><%= transfert.player.nation %> <%= flag_icon(transfert.player.flag_code) %></p>
             <p>from <span class="from"><%= transfert.from %></span> to <span class="to"><%= transfert.to %></span> <br> for <%= transfert.value %>
             <img src="<%= transfert.from_club.image %>" alt="" height="15" width="15">
             <img src="<%= transfert.to_club.image %>" alt="" height="15" width="15">

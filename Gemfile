@@ -17,6 +17,8 @@ gem 'uglifier'
 gem 'webpacker'
 
 gem 'pg_search'
+gem 'flag-icons-rails'
+gem "normalize_country"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
