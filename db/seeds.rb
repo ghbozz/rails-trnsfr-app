@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 
+TransfertClub.destroy_all
 Transfert.destroy_all
 Player.destroy_all
 Club.destroy_all
@@ -58,6 +59,8 @@ def create_transfert(element)
      value: convert_value(value),
      player: player
     )
+    TransfertClub.create(transfert: Transfert.last, club: from)
+    TransfertClub.create(transfert: Transfert.last, club: to)
   end
 end
 
@@ -85,16 +88,16 @@ def set_clubs(element)
 end
 
 def set_league(element, n)
-  no_league = League.create!(name: 'No League')
+  no_league = League.create(name: 'No League')
   if element.children[n].search('a')[2]
     if League.find_by_name(element.children[n].search('a')[2].text)
       return League.find_by_name(element.children[n].search('a')[2].text)
     else
-      return League.create!(name: element.children[n].search('a')[2].text)
+      return League.create(name: element.children[n].search('a')[2].text)
     end
   else
     return no_league
   end
 end
 
-scraper(1)
+scraper(10)

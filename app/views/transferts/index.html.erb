@@ -1,7 +1,13 @@
 
 <div class="container">
   <h1>Les Derniers Transferts</h1>
-  <p>Find me in app/views/transferts/index.html.erb</p>
+
+  <%= simple_form_for :query, url: transferts_path, method: :get do |f| %>
+    <%= f.input :league, collection: League.all.uniq.pluck(:name).sort, label: false %>
+    <%= f.input :search %>
+    <%= f.submit %>
+  <% end %>
+
   <div class="row">
     <% @transferts.each do |transfert| %>
       <div class="col-sm-4">
