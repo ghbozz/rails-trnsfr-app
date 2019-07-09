@@ -3,6 +3,9 @@ require 'open-uri'
 require 'json'
 
 Transfert.destroy_all
+Player.destroy_all
+Club.destroy_all
+League.destroy_all
 
 def scraper(n)
   count = 1
@@ -33,13 +36,13 @@ def create_transfert(element)
   if Club.find_by_name(clubs[0])
     from = Club.find_by_name(clubs[0])
   else
-    from = Club.create(name: clubs[0][0], image: clubs[0][1])
+    from = Club.create!(name: clubs[0][0], image: clubs[0][1], league: set_league(element, 4))
   end
 
   if Club.find_by_name(clubs[1])
     to = Club.find_by_name(clubs[1])
   else
-    to = Club.create(name: clubs[1][0], image: clubs[1][1])
+    to = Club.create!(name: clubs[1][0], image: clubs[1][1], league: set_league(element, 5))
   end
 
   if Player.find_by_name(name)
@@ -79,6 +82,19 @@ def set_clubs(element)
   end
 
   return [[from, from_img], [to, to_img]]
+end
+
+def set_league(element, n)
+  no_league = League.create!(name: 'No League')
+  if element.children[n].search('a')[2]
+    if League.find_by_name(element.children[n].search('a')[2].text)
+      return League.find_by_name(element.children[n].search('a')[2].text)
+    else
+      return League.create!(name: element.children[n].search('a')[2].text)
+    end
+  else
+    return no_league
+  end
 end
 
 scraper(1)
