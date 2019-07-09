@@ -5,4 +5,8 @@ class Club < ApplicationRecord
   has_many :transferts, through: :transfert_club
 
   validates :name, uniqueness: true
+
+  def img_size(value)
+    self.image.gsub('tiny', value) if self.image
+  end
 end

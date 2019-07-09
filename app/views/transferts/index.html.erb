@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container mt-5">
   <h1>Les Derniers Transferts</h1>
 
   <%= simple_form_for :query, url: transferts_path, method: :get do |f| %>
@@ -14,15 +14,20 @@
         <div class="card-product">
           <img class="player-img" src="<%= transfert.player.image %>">
           <% if transfert.created_at.to_date == Date.today %>
-            <span class="new-tag">NEW</span>
+            <span class="new-tag">Today</span>
           <% end %>
           <div class="card-product-infos">
-            <h2><%= transfert.player.name %> (<%= transfert.player.age %> ans)</h2>
+            <img id="to-big-logo" src="<%= transfert.to_club.img_size('medium') %>" alt="" width="35">
+            <h2><%= transfert.player.name %></h2>
+            <span>(<%= transfert.player.age %> ans)</span>
             <p><%= transfert.player.nation %> <%= flag_icon(transfert.player.flag_code) %></p>
             <p>from <span class="from"><%= transfert.from %></span> to <span class="to"><%= transfert.to %></span> <br> for <%= transfert.value %>
-            <img src="<%= transfert.from_club.image %>" alt="" height="15" width="15">
-            <img src="<%= transfert.to_club.image %>" alt="" height="15" width="15">
             </p>
+            <div class="clubs-transfert">
+              <img id="from-logo" src="<%= transfert.from_club.img_size('medium') %>" alt="" width="20">
+              <i class="fas fa-chevron-right"></i>
+              <img id="to-logo" src="<%= transfert.to_club.img_size('medium') %>" alt="" width="20">
+            </div>
           </div>
         </div>
       </div>

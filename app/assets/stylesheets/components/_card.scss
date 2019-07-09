@@ -1,18 +1,31 @@
 .card-product {
   position: relative;
-  // overflow: hidden;
-  height: 120px;
+  height: 170px;
   background: white;
+  color: black;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin-bottom: 35px;
+  border-radius: 7px;
+}
+
+.card-product-infos {
+  position: relative;
+}
+
+#to-big-logo {
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
 
 .player-img {
   height: 100%;
-  width: 120px !important;
+  width: 170px !important;
   object-fit: cover;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .new-tag {
@@ -20,13 +33,13 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: -10px;
+  left: -10px;
   background-color: red;
   color: white;
-  padding: 5px 10px;
+  padding: 3px 7px;
   font-weight: bold;
-  font-size: 0.6em;
+  font-size: 0.5em;
 }
 
 .card-product h2 {
@@ -41,6 +54,16 @@
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
+}
+
+.clubs-transfert {
+  position: absolute;
+  width: 100px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .card-product .card-product-infos {
