@@ -1,5 +1,6 @@
 .card-product {
-  overflow: hidden;
+  position: relative;
+  // overflow: hidden;
   height: 120px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -12,6 +13,20 @@
   height: 100%;
   width: 120px !important;
   object-fit: cover;
+}
+
+.new-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 0.6em;
 }
 
 .card-product h2 {

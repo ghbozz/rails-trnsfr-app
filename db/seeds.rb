@@ -30,6 +30,7 @@ def create_transfert(element)
   name = element.at('.spielprofil_tooltip').text
   age = element.children[2].text
   nation = element.children[3].children.first.values[1]
+  nation_img = element.children[3].children.first.values[0]
   value = element.children[6].children.text
   clubs = set_clubs(element)
 
