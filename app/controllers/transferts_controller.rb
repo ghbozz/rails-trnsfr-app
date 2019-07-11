@@ -1,6 +1,6 @@
 class TransfertsController < ApplicationController
   def index
-    @transferts = Transfert.all
+    @transferts = Transfert.order("created_at DESC")
 
     if params[:query].present?
       if params[:query][:league].present?
